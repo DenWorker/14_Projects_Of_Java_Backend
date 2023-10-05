@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+
+    <title>Переводчик</title>
+
+</head>
+<body>
+<div th:replace="navbar.html"></div>
+
+<div class="container">
+    <div class="row p-3 justify-content-center align-items-center">
+        <div class="card" style="width: 40rem;">
+            <div class="card-header bi-translate"
+                 style="color: #aeff6d; font-size: 35px">
+                Переводчик
+            </div>
+            <div class="card-body ">
+                <form class="mb-2" th:action="@{/admins/translator}" th:method="POST">
+                    <div class="input-group">
+                        <span class="input-group-text">Текст</span>
+                        <textarea aria-label="С текстовым полем" class="form-control"
+                                  name="sentenceToTranslate"
+                                  style="height: 300px;"
+                                  th:text="${sentenceToTranslate}"></textarea>
+                    </div>
+                    <br>
+                    <hr>
+                    <div class="input-group" style="width: 60%;">
+                        <label class="input-group-text" for="languageSelect">Язык перевода</label>
+                        <select class="form-select" id="languageSelect" name="selectedLanguage">
+                            <option th:selected="${selectedLanguage == 'en'}" value="en">Английский</option>
+                            <option th:selected="${selectedLanguage == 'ru'}" value="ru">Русский</option>
+                            <option th:selected="${selectedLanguage == 'az'}" value="az">Азербайджанский</option>
+                            <option th:selected="${selectedLanguage == 'sq'}" value="sq">Албанский</option>
+                            <option th:selected="${selectedLanguage == 'am'}" value="am">Амхарский</option>
+                            <option th:selected="${selectedLanguage == 'ar'}" value="ar">Арабский</option>
+                            <option th:selected="${selectedLanguage == 'hy'}" value="hy">Армянский</option>
+                            <option th:selected="${selectedLanguage == 'af'}" value="af">Африкаанс</option>
+                            <option th:selected="${selectedLanguage == 'eu'}" value="eu">Баскский</option>
+                            <option th:selected="${selectedLanguage == 'ba'}" value="ba">Башкирский</option>
+                            <option th:selected="${selectedLanguage == 'be'}" value="be">Белорусский</option>
+                            <option th:selected="${selectedLanguage == 'bn'}" value="bn">Бенгальский</option>
+                            <option th:selected="${selectedLanguage == 'my'}" value="my">Бирманский</option>
+                            <option th:selected="${selectedLanguage == 'bg'}" value="bg">Болгарский</option>
+                            <option th:selected="${selectedLanguage == 'bs'}" value="bs">Боснийский</option>
+                            <option th:selected="${selectedLanguage == 'cy'}" value="cy">Валлийский</option>
+                            <option th:selected="${selectedLanguage == 'hu'}" value="hu">Венгерский</option>
+                            <option th:selected="${selectedLanguage == 'vi'}" value="vi">Вьетнамский</option>
+                            <option th:selected="${selectedLanguage == 'gl'}" value="gl">Галисийский</option>
+                            <option th:selected="${selectedLanguage == 'nl'}" value="nl">Голландский</option>
+                            <option th:selected="${selectedLanguage == 'mrj'}" value="mrj">Горномарийский</option>
+                            <option th:selected="${selectedLanguage == 'el'}" value="el">Греческий</option>
+                            <option th:selected="${selectedLanguage == 'ka'}" value="ka">Грузинский</option>
+                            <option th:selected="${selectedLanguage == 'gu'}" value="gu">Гуджарати</option>
+                            <option th:selected="${selectedLanguage == 'da'}" value="da">Датский</option>
+                            <option th:selected="${selectedLanguage == 'he'}" value="he">Иврит</option>
+                            <option th:selected="${selectedLanguage == 'yi'}" value="yi">Идиш</option>
+                            <option th:selected="${selectedLanguage == 'id'}" value="id">Индонезийский</option>
+                            <option th:selected="${selectedLanguage == 'ga'}" value="ga">Ирландский</option>
+                            <option th:selected="${selectedLanguage == 'is'}" value="is">Исландский</option>
+                            <option th:selected="${selectedLanguage == 'es'}" value="es">Испанский</option>
+                            <option th:selected="${selectedLanguage == 'it'}" value="it">Итальянский</option>
+                            <option th:selected="${selectedLanguage == 'kk'}" value="kk">Казахский</option>
+                            <option th:selected="${selectedLanguage == 'kn'}" value="kn">Каннада</option>
+                            <option th:selected="${selectedLanguage == 'ca'}" value="ca">Каталанский</option>
+                            <option th:selected="${selectedLanguage == 'ky'}" value="ky">Киргизский</option>
+                            <option th:selected="${selectedLanguage == 'zh'}" value="zh">Китайский</option>
+                            <option th:selected="${selectedLanguage == 'ko'}" value="ko">Корейский</option>
+                            <option th:selected="${selectedLanguage == 'xh'}" value="xh">Коса</option>
+                            <option th:selected="${selectedLanguage == 'la'}" value="la">Латинский</option>
+                            <option th:selected="${selectedLanguage == 'lv'}" value="lv">Латышский</option>
+                            <option th:selected="${selectedLanguage == 'lt'}" value="lt">Литовский</option>
+                            <option th:selected="${selectedLanguage == 'lb'}" value="lb">Люксембургский</option>
+                            <option th:selected="${selectedLanguage == 'mg'}" value="mg">Малагасийский</option>
+                            <option th:selected="${selectedLanguage == 'ms'}" value="ms">Малайский</option>
+                            <option th:selected="${selectedLanguage == 'ml'}" value="ml">Малаялам</option>
+                            <option th:selected="${selectedLanguage == 'mt'}" value="mt">Мальтийский</option>
+                            <option th:selected="${selectedLanguage == 'mk'}" value="mk">Македонский</option>
+                            <option th:selected="${selectedLanguage == 'mn'}" value="mn">Монгольский</option>
+                            <option th:selected="${selectedLanguage == 'de'}" value="de">Немецкий</option>
+                            <option th:selected="${selectedLanguage == 'ne'}" value="ne">Непальский</option>
+                            <option th:selected="${selectedLanguage == 'no'}" value="no">Норвежский</option>
+                            <option th:selected="${selectedLanguage == 'pa'}" value="pa">Панджаби</option>
+                            <option th:selected="${selectedLanguage == 'pap'}" value="pap">Папьяменто</option>
+                            <option th:selected="${selectedLanguage == 'fa'}" value="fa">Персидский</option>
+                            <option th:selected="${selectedLanguage == 'pl'}" value="pl">Польский</option>
+                        </select>
+                    </div>
+
+
+                    <div class="input-group mt-3" th:if="${selectedLanguage} != null">
+                        <label class="input-group-text" for="inputText"
+                               th:text="'Перевод ('+ ${selectedLanguage} + ')'"></label>
+                        <textarea aria-label="С текстовым полем" class="form-control" id="inputText"
+                                  style="height: 300px;"
+                                  th:text="${translatedText}"></textarea>
+                    </div>
+
+                    <div class="d-flex justify-content-center mt-3 mb-3">
+                        <button class="btn btn-outline-success bi-translate" type="submit"> Перевести</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/static/js/bootstrap.bundle.js"></script>
+</body>
+</html>

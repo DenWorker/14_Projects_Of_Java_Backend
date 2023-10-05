@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+
+    <title>Администраторы</title>
+</head>
+<body>
+<div th:replace="navbar.html"></div>
+
+<div class="container" style="margin: 5px;">
+    <div class="row">
+        <table class="table table-hover table-sm caption-top border-info">
+            <caption>Администраторы</caption>
+            <thead>
+            <tr style="text-align: center;">
+                <th scope="col">id</th>
+                <th scope="col">ФИО</th>
+                <th scope="col">Год рождения</th>
+                <th scope="col">Роли</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr style="text-align: center" th:each="admin : ${admins}">
+                <td th:text="' ' + ${admin.getId()}"></td>
+                <td th:text="' ' + ${admin.getUsername()}"></td>
+                <td th:text="${admin.getYearOfBorn()}"></td>
+                <td th:text="${admin.getStringRoles()}"></td>
+                <td>
+                    <form class="mb-2" th:action="@{/admins/{id}/edit(id=${admin.getId()})}" th:method="GET">
+                        <button class="btn btn-outline-warning bi-pencil-square" type="submit"></button>
+                    </form>
+                </td>
+                <td>
+                    <form class="mb-2" th:action="@{/admins/{id}/delete(id=${admin.getId()})}" th:method="DELETE">
+                        <button class="btn btn-outline-danger bi-trash3" type="submit"></button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script src="/static/js/bootstrap.bundle.js"></script>
+</body>
+</html>

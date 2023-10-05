@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+
+    <title>Администратор</title>
+
+</head>
+<body>
+<div th:replace="navbar.html"></div>
+
+<div class="container">
+    <div class="row p-3 justify-content-center align-items-center">
+        <div class="card" style="width: 40rem;">
+            <div class="card-header bi-pencil"
+                 style="color: #aeff6d; font-size: 35px">
+                Администратор
+            </div>
+            <div class="card-body ">
+                <br>
+                <h6 class="card-subtitle mb-2" th:text="${currentAdmin.getUsername()}">value</h6>
+                <hr>
+                <br>
+                <h6 class="card-subtitle mb-2" th:text="'ID: ' + ${currentAdmin.getId()}">value</h6>
+                <h6 class="card-subtitle mb-2" th:text="'Год рождения: ' + ${currentAdmin.getYearOfBorn()}">value</h6>
+            </div>
+            <div class="card-footer" style="margin: 10px; padding: 10px">
+                <h6 class="card-subtitle mb-2">Доступные действия:</h6>
+                <a class="link-success"
+                   href="/admins/index"
+                   th:each="role : ${currentAdmin.getRoles()}" th:if="${role.getRoleName() == 'ROLE_ADMIN_MAIN'}">
+                    Управление администраторами
+                </a>
+                <br>
+                <a class="link-success" th:href="@{/admins/translator}" th:if="${showTranslatorLink}">
+                    Переводчик
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/static/js/bootstrap.bundle.js"></script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+
+    <title>БД книг</title>
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg sticky-top bg-body-tertiary" style="margin: 5px;">
+    <div class="container-fluid">
+        <div class="navbar-brand" style="display: flex; align-items: center;">
+            <i class="bi-brightness-high" style="font-size: 40px; color: #e7e249; margin: 5px;"></i>
+            <p style="margin: 5px;">Web-lib</p>
+        </div>
+        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации"
+                class="navbar-toggler"
+                data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link bi-book" href="/books" style="font-size: 30px;"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link bi-people" href="/people" style="font-size: 30px;"></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="/books"
+                       role="button"
+                       style="font-size: 30px;">
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/books/new">Добавить книгу</a></li>
+                        <li><a class="dropdown-item" href="/people/new">Добавить человека</a></li>
+                        <li><a class="dropdown-item" href="/books/search">Найти книгу</a></li>
+                        <li><a class="dropdown-item" href="/people/search">Найти человека</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a aria-expanded="false" class="btn btn-outline-success bi-list" data-bs-toggle="dropdown"
+                   role="button"
+                   style="font-size: 15px;"
+                   th:text="' ' + ${currentAdmin.username}"></a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item d-flex justify-content-center" href="/admins/admin">Управление</a><br>
+                    </li>
+                    <li>
+                        <form class="d-flex justify-content-center" th:action="@{/logout}" th:method="POST">
+                            <button class="btn btn-outline-danger bi-door-open" type="submit"> Выйти</button>
+                        </form>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <button class="btn btn-outline-secondary floating-button" data-bs-target="#exampleModal" data-bs-toggle="modal"
+            type="button">
+        Настроить отображение
+    </button>
+</nav>
+
+<!-- Модальное окно -->
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Настройка отображения</h1>
+                <button aria-label="Закрыть" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/books}" th:method="GET">
+                    <div class="form-floating mb-3">
+                        <input class=form-control id="Page" name="page" placeholder="1">
+                        <label for="Page">Номер страницы</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input class=form-control id="CountPage" name="books_per_page" placeholder="1">
+                        <label for="CountPage">Количество отображаемых книг</label>
+                    </div>
+
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" id="flexSwitchCheckDefault" name="sort_by_year" role="switch"
+                               type="checkbox" value="true">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Сортировать по дате выхода</label>
+                    </div>
+                    <br>
+                    <hr>
+                    <button class="btn btn-outline-danger bi-door-closed" data-bs-dismiss="modal" type="button">
+                        Закрыть
+                    </button>
+                    <button class="btn btn-outline-success bi-check-all" type="submit">Отобразить</button>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <!--Отображение книги-->
+    <div class="row p-3 justify-content-center align-items-center" th:each="book : ${books}">
+        <div class="card" style="width: 40rem;">
+            <div class="card-header bi-book" style="color: #aeff6d; font-size: 35px" th:text="' ' + ${book.getTitle()}">
+            </div>
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-body-secondary">Автор:</h6>
+                <p class="card-text" th:text="${book.getAuthor()}">value</p>
+
+                <h6 class="card-subtitle mb-2 text-body-secondary">Дата выпуска:</h6>
+                <p class="card-text" th:text="${book.getReleaseDate()}">value</p>
+
+                <p class="card-text" style="color: #ef5f5f" th:if="${book.getOwner() != null}"
+                   th:text="'Книга у: ' + ${book.getOwner().getFullName()}"></p>
+                <p class="card-text" style="color: #a0ef5f" th:if="${book.getOwner() == null}">Книга свободна!</p>
+
+                <form th:action="@{/books/{id}(id=${book.getId})}" th:method="GET">
+                    <button class="btn btn-outline-secondary bi-arrow-right-square" type="submit"> Перейти</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/static/js/bootstrap.bundle.js"></script>
+</body>
+</html>

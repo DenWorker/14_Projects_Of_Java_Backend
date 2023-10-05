@@ -1,0 +1,302 @@
+1)_Web_library_management_system_1
+    1) IntelliJ IDEA
+    2) Java
+    3) Maven
+
+    4) Spring Dispatcher Servlet
+    5) Tomcat Server
+
+    6) MVC
+
+    7) SQL
+    8) Jdbc Template
+
+    9) Html
+   10) Css
+   11) Thymeleaf
+
+   *Имеется валидатор (BindingResult)
+***********************************************************************************************
+
+
+
+
+2)_Principals_schools_management_system_(1_to_1)
+    1) IntelliJ IDEA
+    2) Java
+    3) Maven
+
+    4) SQL
+    5) Hibernate
+***********************************************************************************************
+
+
+
+
+3)_Directors_films_catalog_system_(1_to_N)
+    1) IntelliJ IDEA
+    2) Java
+    3) Maven
+
+    4) SQL
+    5) Hibernate
+***********************************************************************************************
+
+
+
+
+4)_Persons_passports_purchases_tracking_system_(1_to_1_+_1_to_N)
+    1) IntelliJ IDEA
+    2) Java
+    3) Maven
+
+    4) SQL
+    5) Hibernate
+***********************************************************************************************
+
+
+
+
+5)_Films_actors_catalog_system_(N_to_N)
+    1) IntelliJ IDEA
+    2) Java
+    3) Maven
+
+    4) SQL
+    5) Hibernate
+***********************************************************************************************
+
+
+
+
+6)_Web_persons_information_system_1
+    1) IntelliJ IDEA
+    2) Java
+    3) Maven
+
+    4) Spring Dispatcher Servlet
+    5) Tomcat Server
+
+    6) MVC
+
+    7) SQL
+    8) Hibernate
+    9) HQL
+
+   10) Html
+   11) Css
+   12) Thymeleaf
+
+   *Имеется валидатор (BindingResult)
+***********************************************************************************************
+
+
+
+
+7)_Web_library_management_system_2
+    1) IntelliJ IDEA
+    2) Java
+    3) Maven
+
+    4) Spring Dispatcher Servlet
+    5) Tomcat Server
+
+    6) MVC
+
+    7) SQL
+    8) Hibernate
+    9) Spring Data JPA
+
+   10) Html
+   11) Css
+   12) Thymeleaf
+
+   *Имеется валидатор (BindingResult)
+***********************************************************************************************
+
+
+
+
+8)_Web_purchases_tracker
+    1) IntelliJ IDEA
+    2) Java
+    3) Maven
+
+    4) Spring Dispatcher Servlet
+    5) Tomcat Server
+
+    6) MVC
+
+    7) SQL
+    8) Hibernate
+    9) HQL
+   10) Spring Data JPA
+
+   11) Html
+   12) Css
+   13) Thymeleaf
+***********************************************************************************************
+
+
+
+
+9)_SayHello_application
+    1) IntelliJ IDEA
+    2) Java
+    3) Maven
+
+    4) Spring Boot
+    5) Tomcat Server
+
+    6) Html
+***********************************************************************************************
+
+
+
+
+10)_Testing_the_Yandex_Translator_API_and_Reqres_service
+    1) IntelliJ IDEA
+    2) Java
+    3) Maven
+
+    4) Rest API
+***********************************************************************************************
+
+
+
+
+11)_Web_persons_information_system_2
+    1) IntelliJ IDEA
+    2) Java
+    3) Maven
+
+    4) Spring Boot
+    5) Tomcat Server
+
+    6) Rest API
+
+    7) SQL
+    8) Hibernate
+    9) Spring Data JPA
+
+   *Имеются классы исключений и ответ при исключительных ситуациях (@ExceptionHandler) (BindingResult)
+***********************************************************************************************
+
+
+
+
+12)_Web_persons_information_system_3
+    1) IntelliJ IDEA
+    2) Java
+    3) Maven
+
+    4) Spring Boot
+    5) Tomcat Server
+
+    6) Rest API
+
+    7) SQL
+    8) Hibernate
+    9) Spring Data JPA
+
+   10) Spring Old Security
+   11) JWT
+
+   *Имеется валидатор (BindingResult)
+***********************************************************************************************
+
+
+
+
+13)_Web_meteorological_sensors_recorder
+    1) IntelliJ IDEA
+    2) Java
+    3) Maven
+
+    4) Spring Boot
+    5) Tomcat Server
+
+    6) Rest API
+
+    7) SQL
+    8) Hibernate
+    9) Spring Data JPA
+
+   *Имеется валидатор (BindingResult)
+   *Имеются классы исключений и ответ при исключительных ситуациях (@ExceptionHandler) (BindingResult)
+***********************************************************************************************
+
+
+
+
+(Тут большего всего технологий)
+14)_Web_library_management_system_3
+    1) IntelliJ IDEA
+    2) Java
+    3) Maven
+
+    4) Spring Boot
+    5) Tomcat Server
+
+    6) MVC
+
+    7) Rest API
+
+    8) SQL
+    9) Hibernate
+   10) Spring Data JPA
+
+   11) Spring New Security
+   12) JWT
+
+   13) Html
+   14) Css
+   15) Bootstrap
+   16) Thymeleaf
+
+   *Имеется валидатор (BindingResult)
+***********************************************************************************************
+
++++ 14
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о человеке</title>
+</head>
+<body>
+
+<h1 th:text="${person.getFullName()}">value</h1>
+<ul>
+    <li th:text="'ID: ' + ${person.getId()}">user</li>
+    <li th:text="'Год рождения: ' + ${person.getYearOfBorn()}">user</li>
+</ul>
+<br>
+
+<p th:if="${person_books.isEmpty()}">Человек не взял ни одной книги!</p>
+<div th:if="${!person_books.isEmpty()}">
+    <hr>
+    <b>Книги:</b>
+    <br>
+
+    <table style="border: 1px solid #000;">
+        <colgroup>
+            <col span="2" style="background:Khaki">
+            <col style="background-color:LightCyan">
+            <col style="background-color:#9be08e">
+            <col style="background-color: #8cb7ee">
+        </colgroup>
+        <thead>
+        <tr>
+            <th style="border: 1px solid #000;">Id книги</th>
+            <th style="border: 1px solid #000;">Название книги</th>
+            <th style="border: 1px solid #000;">Автор книги</th>
+            <th style="border: 1px solid #000;">Дата выпуска</th>
+            <th style="border: 1px solid #000;">Когда была взята</th>
+        </tr>
+        </thead>
+
+        <tbody th:each="book : ${person_books}">
+        <tr>
+            <td th:style="${book.isDelay()} ? 'color: red; border: 1px solid #000;' : 'color: green; border: 1px solid #000;'"
+                th:text="${book.getId()}"></td>
+            <td th:style="${book.isDelay()} ? 'color: red; border: 1px solid #000;' : 'color: green; border: 1px solid #000;'"
+                th:text="${book.getTitle()}"></td>
+            <td th:style="${book.isDelay()} ? 'color: red; border: 1px solid #000;' : 'color: green; border: 1px solid #000;'"
+                th:text="${book.getAuthor()}"></td>
+            <td th:style="${book.isDelay()} ? 'color: red; border: 1px solid #000;' : 'color: green; border: 1px solid #000;'"
+                th:text="${book.getReleaseDate()}"></td>
+            <td th:style="${book.isDelay()} ? 'color: red; border: 1px solid #000;' : 'color: green; border: 1px solid #000;'"
+                th:text="${book.getTakingBook()}"></td>
+        </tr>
+
+        </tbody>
+    </table>
+
+</div>
+
+<hr>
+<br>
+<form th:action="@{/people}" th:method="GET">
+    <input type="submit" value="На страницу людей"/>
+</form>
+
+<br>
+<form th:action="@{/people/{id}/edit(id=${person.getId()})}" th:method="GET">
+    <input type="submit" value="Редактировать данные человека"/>
+</form>
+
+<br>
+<form th:action="@{/people/{id}/delete(id=${person.getId()})}" th:method="DELETE">
+    <input type="submit" value="Удалить человека"/>
+</form>
+
+</body>
+</html>

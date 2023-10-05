@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+
+    <title>Редактирование книги</title>
+
+</head>
+<body>
+<div th:replace="navbar.html"></div>
+
+<div class="container">
+    <div class="row p-3 justify-content-center align-items-center">
+        <form class="card" style="margin: 10px; padding: 10px; width: 40rem;"
+              th:action="@{/books/{id}(id=${book.getId()})}"
+              th:method="PATCH"
+              th:object="${book}">
+
+            <div class="card-header" style="color: #aeff6d; font-size: 35px">
+                Редактирование книги
+            </div>
+
+            <div class="card-body " style="margin: 10px; padding: 10px">
+                <div class="form-floating mb-3">
+                    <input id="floatingInputBookName"
+                           placeholder="Энциклопедия"
+                           th:class="${#fields.hasErrors('title')}? 'class= form-control is-invalid' : 'class= form-control'"
+                           th:field="*{title}">
+                    <label for="floatingInputBookName" th:if="${!#fields.hasErrors('title')}">Название книги</label>
+                    <label for="floatingInputBookName" th:errors="*{title}"
+                           th:if="${#fields.hasErrors('title')}"></label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input class="form-control"
+                           id="floatingAuthor"
+                           placeholder="Пушкин Александр Сергеевич"
+                           th:class="${#fields.hasErrors('author')}? 'class= form-control is-invalid' : 'class= form-control'"
+                           th:field="*{author}">
+                    <label for="floatingAuthor" th:if="${!#fields.hasErrors('author')}">Автор книги</label>
+                    <label for="floatingAuthor" th:errors="*{author}" th:if="${#fields.hasErrors('author')}"></label>
+                </div>
+
+                <div class="form-floating">
+                    <input class="form-control"
+                           id="floatingYear"
+                           placeholder="1999"
+                           th:class="${#fields.hasErrors('releaseDate')}? 'class= form-control is-invalid' : 'class= form-control'"
+                           th:field="*{releaseDate}">
+                    <label for="floatingYear" th:if="${!#fields.hasErrors('releaseDate')}">Год издания</label>
+                    <label for="floatingYear" th:errors="*{releaseDate}"
+                           th:if="${#fields.hasErrors('releaseDate')}"></label>
+                </div>
+                <br>
+                <hr>
+                <button class="btn btn-outline-warning bi-pencil-square" type="submit"> Редактировать</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="/static/js/bootstrap.bundle.js"></script>
+</body>
+</html>

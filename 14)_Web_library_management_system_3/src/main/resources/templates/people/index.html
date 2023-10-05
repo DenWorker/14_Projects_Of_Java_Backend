@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+
+    <title>БД людей</title>
+
+</head>
+<body>
+<div th:replace="navbar.html"></div>
+
+<div class="container">
+    <!--Отображение человека-->
+    <div class="row p-3 justify-content-center align-items-center" th:each="person : ${people}">
+        <div class="card" style="width: 40rem;">
+            <div class="card-header bi-people" style="color: #aeff6d" th:text="' ' + ${person.getFullName()}">
+            </div>
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2" th:text="'ID: ' + ${person.getId()}">value</h6>
+                <h6 class="card-subtitle mb-2"
+                    th:text="'Год рождения: ' + ${person.getYearOfBorn()}">value</h6>
+                <form th:action="@{/people/{id}(id=${person.getId()})}" th:method="GET">
+                    <button class="btn btn-outline-secondary bi-person-vcard" type="submit"> Перейти</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/static/js/bootstrap.bundle.js"></script>
+</body>
+</html>

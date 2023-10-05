@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+
+    <title>Информация о книге</title>
+
+</head>
+<body>
+<div th:replace="navbar.html"></div>
+
+<div class="container">
+    <!--Отображение книги-->
+    <div class="row p-3 justify-content-center align-items-center">
+        <div class="card" style="width: 40rem;">
+            <div class="card-header bi-book-half" style="color: #aeff6d; font-size: 35px"
+                 th:text="' ' + ${book.getTitle()}">
+            </div>
+
+            <div class="card-body " style="margin: 10px; padding: 10px">
+                <h6 class="card-subtitle mb-2" th:text="'ID: ' + ${book.getId()}">value</h6>
+                <h6 class="card-subtitle mb-2" th:text="'Автор: ' + ${book.getAuthor()}">value</h6>
+                <h6 class="card-subtitle mb-2" th:text="'Дата выпуска: ' + ${book.getReleaseDate()}">value</h6>
+                <form class="mb-2" th:action="@{/books/{id}/delete(id=${book.getId()})}"
+                      th:method="DELETE">
+                    <button class="btn btn-outline-danger bi-trash3" type="submit"> Удалить</button>
+                </form>
+                <form class="mb-2" th:action="@{/books/{id}/edit(id=${book.getId()})}" th:method="GET">
+                    <button class=" btn btn-outline-warning bi-pencil-square" type="submit"> Редактировать</button>
+                </form>
+            </div>
+
+            <div class="card-footer" style="margin: 10px; padding: 10px" th:if="${personOfBook}">
+                <h6 class="card-subtitle mb-2">Книга сейчас у:</h6>
+                <a class="card-text bi-box-seam link-info"
+                   th:href="@{/people/{id}(id=${personOfBook.getId()})}"
+                   th:text="' ' + ${personOfBook.getFullName()}">
+                </a>
+                <hr>
+                <h6 class="card-subtitle mb-2">Книга взята:</h6>
+                <h6 class="card-subtitle mb-2" th:text="${book.getTakingBook()}">VALUE</h6>
+                <form class="mb-2" th:action="@{/books/{id}/free(id=${book.getId()})}" th:method="PATCH">
+                    <button class="btn btn-outline-danger bi-person-slash" type="submit"> Освободить книгу</button>
+                </form>
+            </div>
+
+            <div class="card-footer" style="margin: 10px; padding: 10px" th:if="${people}">
+                <form class="mb-2" th:action="@{/books/{id}/assignBook(id=${book.getId()})}" th:method="PATCH">
+                    <label for="person">Эта книга свободна. Кому назначить её?</label>
+                    <select class="form-select form-select-lg mb-3" id="person" th:field="*{id}" th:object="${person}">
+                        <option th:each="person: ${people}" th:text="${person.getFullName()}"
+                                th:value="${person.getId()}"></option>
+                    </select>
+                    <button class="btn btn-outline-success bi-person-check" type="submit"> Назначить книгу</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/static/js/bootstrap.bundle.js"></script>
+</body>
+</html>

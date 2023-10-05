@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark" lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+    <title>Аутентификация</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="row p-3 justify-content-center align-items-center">
+
+        <div class="card text-center mb-3" style="width: 25rem;">
+
+            <div class="card-header" style="color: #aeff6d; font-size: 35px">
+                Вход
+            </div>
+
+            <div class="card-body " style="margin: 10px; padding: 10px">
+                <form method="POST" th:action="@{/auth/login}">
+                    <div class="form-floating mb-3">
+                        <input class="form-control"
+                               id="username"
+                               name="username"
+                               placeholder="Username">
+                        <label for="username">Имя пользователя</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input class="form-control"
+                               id="password"
+                               name="password"
+                               placeholder="Password"
+                               type="password">
+                        <label for="password">Пароль</label>
+                    </div>
+                    <hr>
+                    <button class="btn btn-outline-success bi-arrow-right-square" type="submit"> Войти</button>
+                </form>
+                <br>
+                <form th:action="@{/auth/registration}" th:method="GET">
+                    <button class="btn btn-outline-warning bi-arrow-right-square" type="submit"> Зарегистрироваться
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

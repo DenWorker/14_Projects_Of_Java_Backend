@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+
+    <title>Информация о человеке</title>
+
+</head>
+<body>
+<div th:replace="navbar.html"></div>
+
+<div class="container" style="margin: 5px; padding: 0">
+    <!--Отображение человека-->
+    <div class="row p-3 justify-content-start align-items-start">
+        <div class="card" style="width: 45rem;">
+            <div class="card-header bi-people"
+                 style="color: #aeff6d; font-size: 35px"
+                 th:text="' ' + ${person.getFullName()}">
+            </div>
+            <div class="card-body ">
+                <h6 class="card-subtitle mb-2" th:text="'ID: ' + ${person.getId()}">value</h6>
+                <h6 class="card-subtitle mb-2" th:text="'Год рождения: ' + ${person.getYearOfBorn()}">value</h6>
+
+                <form class="mb-2" th:action="@{/people/{id}/delete(id=${person.getId()})}" th:method="DELETE">
+                    <button class="btn btn-outline-danger bi-trash3" type="submit"> Удалить</button>
+                </form>
+                <form class="mb-2" th:action="@{/people/{id}/edit(id=${person.getId()})}" th:method="GET">
+                    <button class="btn btn-outline-warning bi-pencil-square" type="submit"> Редактировать</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p th:if="${person_books.isEmpty()}">Человек не взял ни одной книги!</p>
+<div class="container" style="margin: 5px; padding: 0" th:if="${!person_books.isEmpty()}">
+    <div class="row p-3 justify-content-start align-items-start">
+        <table class="table table-hover table-sm caption-top border-info">
+            <caption>Книги читателя</caption>
+            <thead>
+            <tr>
+                <th scope="col">id книги</th>
+                <th scope="col">Название книги</th>
+                <th scope="col">Автор книги</th>
+                <th scope="col">Год выпуска</th>
+                <th scope="col">Когда была взята</th>
+                <th scope="col">Просрочка</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="book : ${person_books}">
+                <td th:text="${book.getId()}"></td>
+                <td>
+                    <a class="card-text bi-box-seam link-info"
+                       th:href="@{/books/{id}(id=${book.getId()})}"
+                       th:text="' ' + ${book.getTitle()}">
+                    </a>
+                </td>
+                <td th:text="${book.getAuthor()}"></td>
+                <td th:text="${book.getReleaseDate()}"></td>
+                <td th:text="${book.getTakingBook()}"></td>
+                <td th:text="${book.isDelay()}? 'Книга просрочена' : 'Всё в порядке'">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="/static/js/bootstrap.bundle.js"></script>
+</body>
+</html>

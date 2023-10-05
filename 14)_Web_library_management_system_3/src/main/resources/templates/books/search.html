@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+
+    <title>Поиск книги</title>
+
+</head>
+<body>
+<div th:replace="navbar.html"></div>
+
+<div class="container">
+    <div class="row p-3 justify-content-start align-items-start">
+        <div class="card" style="margin: 10px; padding: 10px; width: 40rem;">
+            <div class="card-header" style="color: #aeff6d; font-size: 35px">
+                Поиск книги
+            </div>
+            <div class="card-body " style="margin: 10px; padding: 10px">
+                <form class="form-floating" th:action="@{/books/search}" th:method="POST">
+                    <input class="form-control" id="SearchBook" name="findBook" placeholder="Энциклопедия">
+                    <label for="SearchBook">Название книги</label>
+                    <br>
+                    <hr>
+                    <button class="btn btn-outline-warning bi-search" type="submit"> Найти книгу</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="row p-3 justify-content-center align-items-center" th:if="${findBooks}">
+        <hr>
+        <h6 class="card-subtitle mb-2" th:if="${findBooks.isEmpty()}">Книг не найдено!</h6>
+
+        <div class="card" style="margin: 20px; padding: 10px; width: 40rem;" th:each="findBook : ${findBooks}"
+             th:if="${!findBooks.isEmpty()}">
+            <div class="card-header bi-book-half" style="color: #aeff6d; font-size: 35px"
+                 th:text="' ' + ${findBook.getTitle()}">
+            </div>
+
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2"><u>Автор книги:</u></h6>
+                <p class="card-text" th:text="${findBook.getAuthor()}"></p>
+                <br>
+                <h6 class="card-subtitle mb-2">Книга принадлежит:</h6>
+                <a class="card-text bi-box-seam link-info"
+                   th:href="@{/people/{id}(id=${findBook.getOwner().getId()})}"
+                   th:if="${findBook.getOwner()!=null}"
+                   th:text="' ' + ${findBook.getOwner().getFullName()}">
+                </a>
+                <p class="card-text" th:if="${findBook.getOwner()==null}"
+                   th:text="'Книга свободна!'"></p>
+            </div>
+
+            <div class="card-footer">
+                <form th:action="@{/books/{id}(id=${findBook.getId})}" th:method="GET" th:object="${findBooks}">
+                    <button class="btn btn-outline-success bi-arrow-right-square" style="margin-top: 10px;"
+                            type="submit">
+                        Перейти к книге
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="/static/js/bootstrap.bundle.js"></script>
+</body>
+</html>

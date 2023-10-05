@@ -1,0 +1,44 @@
+.bi {
+    font-size: 35px;
+    color: #aeff6d;
+}
+
+.floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999; /* Указывает, как кнопка будет отображаться над другими элементами */
+}
+
+body {
+    background-color: #000000;
+    background-image: url("/static/images/background.png");
+    background-attachment: fixed;
+}
+
+/* Для WebKit браузеров (Chrome, Safari, Opera) */
+/* полоса прокрутки (скроллбар) */
+::-webkit-scrollbar {
+    width: 15px; /* Ширина ползунка */
+    height: 15px;
+    background-color: #606060; /* Цвет фона */
+}
+
+/* ползунок скроллбара */
+::-webkit-scrollbar-thumb {
+    background-color: #578f30; /* Цвет ползунка */
+    border-radius: 6px; /* Скругление углов ползунка */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #ef5f5f; /* Цвет ползунка при наведении */
+}
+
+/* Для WebKit браузеров (Chrome, Safari, Opera) */
+::-webkit-resizer {
+    width: 12px; /* Ширина ресайз-регулятора */
+    height: 12px; /* Высота ресайз-регулятора */
+    background-color: #21252a;
+    background-image: url('/static/images/resizer.png'); /* Путь к изображению */
+    background-size: cover;
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о человеке</title>
+</head>
+<body>
+
+<h1 th:text="${person.getFullName()}">value</h1>
+<ul>
+    <li th:text="'ID: ' + ${person.getId()}">user</li>
+    <li th:text="'Год рождения: ' + ${person.getYearOfBorn()}">user</li>
+</ul>
+<br>
+
+<p th:if="${person_books.isEmpty()}">Человек не взял ни одной книги!</p>
+<div th:if="${!person_books.isEmpty()}">
+    <hr>
+    <b>Книги:</b>
+    <br>
+
+    <table style="border: 1px solid #000000;">
+        <colgroup>
+            <col span="2" style="background:Khaki">
+            <col style="background-color:LightCyan">
+            <col style="background-color:#9be08e">
+        </colgroup>
+        <thead>
+        <tr>
+            <th style="border: 1px solid black;">Id книги</th>
+            <th style="border: 1px solid black;">Название книги</th>
+            <th style="border: 1px solid black;">Автор книги</th>
+            <th style="border: 1px solid black;">Дата выпуска</th>
+        </tr>
+        </thead>
+
+        <tbody th:each="book : ${person_books}">
+        <tr>
+            <td style="border: 1px solid black;" th:text="${book.getId()}">value</td>
+            <td style="border: 1px solid black;" th:text="${book.getTitle()}">value</td>
+            <td style="border: 1px solid black;" th:text="${book.getAuthor()}">value</td>
+            <td style="border: 1px solid black;" th:text="${book.getReleaseDate()}">value</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<hr>
+<br>
+<form th:action="@{/people}" th:method="GET">
+    <input type="submit" value="На страницу людей"/>
+</form>
+
+<br>
+<form th:action="@{/people/{id}/edit(id=${person.getId()})}" th:method="GET">
+    <input type="submit" value="Редактировать данные человека"/>
+</form>
+
+<br>
+<form th:action="@{/people/{id}/delete(id=${person.getId()})}" th:method="DELETE">
+    <input type="submit" value="Удалить человека"/>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+
+    <title>Регистрация администратора</title>
+
+</head>
+<body>
+<div class="container">
+    <div class="row p-3 justify-content-center align-items-center">
+        <form style="margin-bottom: 5px;" th:action="@{/auth/login}" th:method="GET">
+            <button class="btn btn-outline-success bi-arrow-left-square" type="submit"> Назад</button>
+        </form>
+        <div class="card" style="width: 28rem;">
+
+            <div class="card-header bi-database text-center" style="color: #aeff6d; font-size: 25px">
+                Регистрация администратора
+            </div>
+
+            <div class="card-body">
+                <form th:action="@{/auth/registration}" th:method="POST" th:object="${admin}">
+
+                    <div class="form-floating mb-3">
+                        <input id="username"
+                               placeholder="Иванов Иван Иванович"
+                               th:class="${#fields.hasErrors('username')}? 'class= form-control is-invalid' : 'class= form-control'"
+                               th:field="*{username}">
+                        <label for="username" th:if="${!#fields.hasErrors('username')}">ФИО</label>
+                        <label for="username" th:errors="*{username}"
+                               th:if="${#fields.hasErrors('username')}"></label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input id="yearOfBorn"
+                               placeholder="Иванов Иван Иванович"
+                               th:class="${#fields.hasErrors('yearOfBorn')}? 'class= form-control is-invalid' : 'class= form-control'"
+                               th:field="*{yearOfBorn}">
+                        <label for="yearOfBorn" th:if="${!#fields.hasErrors('yearOfBorn')}">Год рождения</label>
+                        <label for="yearOfBorn" th:errors="*{yearOfBorn}"
+                               th:if="${#fields.hasErrors('yearOfBorn')}"></label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input id="password"
+                               placeholder="Иванов Иван Иванович"
+                               th:class="${#fields.hasErrors('password')}? 'class= form-control is-invalid' : 'class= form-control'"
+                               th:field="*{password}"
+                               type="password">
+                        <label for="password" th:if="${!#fields.hasErrors('password')}">Пароль</label>
+                        <label for="password" th:errors="*{password}"
+                               th:if="${#fields.hasErrors('password')}"></label>
+                    </div>
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            Выбор ролей администратора
+                        </div>
+                        <div class="card-body">
+                            <div class="form-check">
+                                <label class="form-check-label d-block my-2" th:each="role: ${roles}">
+                                    <input class="form-check-input" th:field="*{roles}" th:value="${role.getId()}"
+                                           type="checkbox">
+                                    <span th:text="${role.getRoleName()}"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <hr>
+                    <div class="d-flex justify-content-center">
+                        <button class="btn btn-outline-warning bi-database-add" type="submit">
+                            Зарегистрировать
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/static/js/bootstrap.bundle.js"></script>
+</body>
+</html>
