@@ -24,7 +24,7 @@ public class Translator {
 
         // Создание данных для пост-запроса.
         Map<String, String> jsonData = new HashMap<>();
-        jsonData.put("folderID", "нужный foldr");
+        jsonData.put("folderID", "нужный folder");
         jsonData.put("targetLanguageCode", "en");
         jsonData.put("texts", "[" + sentenceToTranslate + "]");
 
